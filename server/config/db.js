@@ -3,7 +3,7 @@ mongoose.set('strictQuery', false)
 
 const connectToDb = async(cb) => {
     try {
-        const connect = await mongoose.connect(process.env.MONGO_COMPASS_URI) 
+        const connect = await mongoose.connect(process.env.MONGO_ATLAS_URI) 
         console.log('mongodb connected')
         cb()
     } catch (error) {
