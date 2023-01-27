@@ -27,7 +27,7 @@ const SearchBar = () => {
             setWordCount(resp.data.wordsCount);
           })
           .catch((err) => {
-            toast.error('Not a valid Url!', {
+            toast.error('Not a valid 1 Url!', {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -40,7 +40,7 @@ const SearchBar = () => {
             // console.log(err);
           });
       } else {
-        toast.error('Not a valid Url!', {
+        toast.error('Not a valid 2 Url!', {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
