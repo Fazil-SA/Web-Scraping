@@ -15,13 +15,14 @@ app.use(cors())
 app.use(userRouter)
 
 // Making Build Folder as Public 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '../client/build/')));
 
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-//   });
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
+
   
-
 //DB Listen
 connectToDb(() => {
     app.listen(PORT, () => {
