@@ -3,15 +3,16 @@ import '../components/historytable.css'
 import { axiosSearchInstance } from '../instance/axios'
 import { DataGrid } from '@mui/x-data-grid';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const HistoryTable = () => {
-    const [tableData, setTableData] = useState();
+    const [tableData, setTableData] = useState([]);
+    // const [favourite, setFavourite] = useState();
 
     useEffect(() => {
-        tableData()
-        async function tableData(){
+        tableDataFunc()
+        async function tableDataFunc(){
             try {
                 const response = await axiosSearchInstance
                 response.get('/history')
@@ -42,14 +43,22 @@ const HistoryTable = () => {
             const response = await axiosSearchInstance
             response.post('/historyDelete',{id:id})
             .then((res) => {
+                toast.error('Deleted!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
                 console.log(res)
             })
         } catch (error) {
             throw new Error('Update Error')
         }
     }
-
-    // console.log(tableData)
 
     const columns = [
         { field: '_id', headerName: 'Id', width: 70 },
@@ -64,21 +73,17 @@ const HistoryTable = () => {
               
               return (
                 <>
-                    {tableData.favorite ?
-                    <FavoriteIcon sx={{cursor:'pointer'}} onClick={() => editProduct(tableData.id)}/>
-                    :
-                    <FavoriteBorderIcon sx={{cursor:'pointer'}} onClick={() => editProduct(tableData.id)}/>
-                    }
-                    <DeleteIcon sx={{cursor:'pointer'}} onClick={() => deleteProduct(tableData.id)}/>
+                       <FavoriteIcon sx={{cursor:'pointer'}} onClick={() => editProduct(tableData.id)}/>
+                       <DeleteIcon sx={{cursor:'pointer'}} onClick={() => deleteProduct(tableData.id)}/>
                 </>
                 
               );
           }}
       ];
-      
 
   return (
     <div className='main-div'>
+        <ToastContainer />
         <h1 className='table-heading'>History</h1>
         <div style={{ height: 400, width: '100%'}}>
             <DataGrid sx={{color:'white'}}

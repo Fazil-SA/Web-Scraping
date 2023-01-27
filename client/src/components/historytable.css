@@ -21,3 +21,11 @@
     justify-content: center;
     padding: 5px;
 }
+
+.MuiTablePagination-displayedRows {
+    color: #fff
+}
+
+.MuiSvgIcon-root {
+    color: #fff;
+}
