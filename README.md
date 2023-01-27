@@ -1,4 +1,4 @@
-# Web Word Count & Media Scrap
+# Web Word Count & Media Scrapping
 
 ## Table of contents
 
